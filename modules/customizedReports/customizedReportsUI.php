@@ -43,9 +43,7 @@ class customizedReportsUI extends UserInterface
         $this->_moduleName = 'reports';
         $this->_moduleTabText = 'Reports';
         $this->_subTabs = array(
-                'EEO Reports' => CATSUtility::getIndexName() . '?m=reports&amp;a=customizeEEOReport',
-'Custom Reports' => CATSUtility::getIndexName() . '?m=reports&amp;a=customizedReport'
-
+                'EEO Reports' => CATSUtility::getIndexName() . '?m=reports&amp;a=customizeEEOReport'
             );
     }
 
