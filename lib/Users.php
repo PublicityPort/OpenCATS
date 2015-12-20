@@ -508,6 +508,63 @@ class Users
 
         return $this->_db->getAllAssoc($sql);
     }
+/**
+     * Returns all users with only add and edit preveliges.
+     *
+     * @return array users data
+     */
+    public function getAllRecrutiers()
+    {
+        $sql = sprintf(
+            "SELECT
+                user.user_name AS username,
+                user.password AS password,
+                user.access_level AS accessLevel,
+                access_level.short_description AS accessLevelDescription,
+                user.first_name AS firstName,
+                user.last_name AS lastName,
+                user.email AS email,
+                user.company as company,
+                user.city as city,
+                user.state as state,
+                user.zip_code as zipCode,
+                user.country as country,
+                user.address as address,
+                user.phone_work as phoneWork,
+                user.user_id AS userID,
+                DATE_FORMAT(
+                    MAX(
+                        IF(user_login.successful = 1, user_login.date, NULL)
+                    ),
+                    '%%m-%%d-%%y (%%h:%%i %%p)'
+                ) AS successfulDate,
+                DATE_FORMAT(
+                    MAX(
+                        IF(user_login.successful = 0, user_login.date, NULL)
+                    ),
+                    '%%m-%%d-%%y (%%h:%%i %%p)'
+                ) AS unsuccessfulDate
+            FROM
+                user
+            LEFT JOIN access_level
+                ON user.access_level = access_level.access_level_id
+            LEFT JOIN user_login
+                ON user.user_id = user_login.user_id
+            WHERE
+                user.site_id = %s
+		 AND
+			access_level = 200
+            GROUP BY
+                user.user_id
+            ORDER BY
+                user.access_level DESC,
+                user.last_name ASC,
+                user.first_name ASC",
+            $this->_siteID
+        );
+
+        return $this->_db->getAllAssoc($sql);
+    }
 
     /**
      * Looks up and returns a user's ID by username. If no matching username is
