@@ -1,0 +1,1 @@
+<script type="text/javascript">setStatus('Writing backup...'); setProgress(1); progressComplete('<tr><td width="295px;">Adding attachments...</td><td><span class="passedText">DONE</span></td></tr>');</script>
