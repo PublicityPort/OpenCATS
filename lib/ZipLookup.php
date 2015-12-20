@@ -29,7 +29,6 @@
  * @copyright Copyright (C) 2005 - 2007 Cognizo Technologies, Inc.
  * @version    $Id: ZipLookup.php 3587 2007-11-13 03:55:57Z will $
  */
-
 /**
  *	Zip Code Lookup Library
  *	@package    CATS
@@ -50,10 +49,8 @@ class ZipLookup
         {
             return (int) $match[1];
         }
-
         return 0;
      }
-
     /**
      * Finds City and State names via United States Zip code. The Zip code
      * should be specified as an integer with no leading 0s.
@@ -65,14 +62,11 @@ class ZipLookup
     {
         /* Make sure we have an integer. */
         $zip = (int) $zip;
-
         if ($zip === 0)
         {
             return array('city' => '', 'state' => '');
         }
-
         $db = DatabaseConnection::getInstance();
-
         $sql = sprintf(
             "SELECT
                 city AS city,
@@ -84,12 +78,10 @@ class ZipLookup
             $zip
         );
         $data = $db->getAssoc($sql);
-
         if (empty($data))
         {
             return array('city' => '', 'state' => '');
         }
-
         return $data;
     }
     
@@ -106,9 +98,48 @@ class ZipLookup
         
         $select = "(3958*3.1415926*sqrt((zipcode_searching.lat-zipcode_record.lat)*(zipcode_searching.lat-zipcode_record.lat) + cos(zipcode_searching.lat/57.29578)*cos(zipcode_record.lat/57.29578)*(zipcode_searching.lng-zipcode_record.lng)*(zipcode_searching.lng-zipcode_record.lng))/180) as distance_km";
         $join = "LEFT JOIN zipcodes as zipcode_searching ON zipcode_searching.zipcode = ".$zipcode." LEFT JOIN zipcodes as zipcode_record ON zipcode_record.zipcode = ".$zipcodeColumn;
-
         return array("select" => $select, "join" => $join);
     }
+
+	// #############################################################
+	// #############################################################
+
+	public function getDistance($fLat1, $fLng1, $fLat2, $fLng2) {
+		$iEarthRadius = 6371;
+
+		$fLatRad = deg2rad($fLat2 - $fLat1);
+		$fLonRad = deg2rad($fLng2 - $fLng1);
+		$a = sin($fLatRad/2) * sin($fLatRad/2) + cos(deg2rad($fLat1)) * cos(deg2rad($fLat2)) * sin($fLonRad/2) * sin($fLonRad/2);
+		$c = 2 * asin(sqrt($a));
+		$d = $iEarthRadius * $c;
+
+        	return $d;
+	}
+
+	public function getDistanceFromAddress($sAddress1 = '', $sAddress2 = '') {
+		$ret = -1;
+
+		$sUrl = 'http://maps.googleapis.com/maps/api/geocode/xml?sensor=false&address=';
+
+		if ($sAddress1 != '' && $sAddress2 != '') {
+			if (($oXml = simplexml_load_file($sUrl . $sAddress1))) {
+				$fLat1 = floatval($oXml->result->geometry->location->lat);
+				$fLng1 = floatval($oXml->result->geometry->location->lng);
+				if (($oXml = simplexml_load_file($sUrl . $sAddress2))) {
+					$fLat2 = floatval($oXml->result->geometry->location->lat);
+					$fLng2 = floatval($oXml->result->geometry->location->lng);
+					$ret = $this->getDistance($fLat1, $fLng1, $fLat2, $fLng2) * 0.621371192;
+				} else {
+					$ret = -2;
+				}
+			} else {
+				$ret = -2;
+			}
+		}
+
+		return $ret;
+	}
+
 }
 
 ?>
