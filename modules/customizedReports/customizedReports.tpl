@@ -18,15 +18,34 @@
             <p class="note">Customized Reports</p>
 
             <table border="0" width="925">
-			<?php
+				<tr>
+				<?php
                 $users = new Users($_SESSION['CATS']->getSiteID());
-				$AllUsers = $users -> getAll();
+				$AllUsers = $users -> getAllRecrutiers();
+				$count =0;
 				foreach($AllUsers as $row){
-					foreach($row as $cell)
-					echo $cell . "\t";
-					echo "<br />";
+					echo "".
+					"<td width=\"320\">".
+					"<table class=\"statisticsTable\" width=\"300\">".
+						"<tr>".
+							"<th align=\"left\">".$row['firstName']." ".$row['lastName']."</th>".
+							"<th align=\"left\">&nbsp;&nbsp;</th>".
+						"</tr>".
+
+						"<tr class=\"evenTableRow\">".
+							"<td align=\"left\">New Job Orders</td>".
+							"<td align=\"right\"></td>".
+						"</tr>".
+					"</table>".
+				"</td>";
+					$count++;
+					if($count == 3){
+						echo "</tr><tr>";
+						$count = 0;
+					}						
 				}
 				?>
+				</tr>
             </table>
         </div>
     </div>
