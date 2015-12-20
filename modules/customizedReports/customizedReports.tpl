@@ -11,11 +11,11 @@
                     <td width="3%">
                         <img src="images/reports.gif" width="24" height="24" border="0" alt="Reports" style="margin-top: 3px;" />&nbsp;
                     </td>
-                    <td><h2>Reports</h2></td>
+                    <td><h2>Customized Reports</h2></td>
                 </tr>
             </table>
 
-            <p class="note">Reports</p>
+            <p class="note">Customized Reports</p>
 
             <table border="0" width="925">
 			<?php
