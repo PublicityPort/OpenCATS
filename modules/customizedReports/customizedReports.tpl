@@ -1,5 +1,5 @@
 <?php /* $Id: Reports.tpl 3304 2007-10-25 17:31:55Z will $ */ ?>
-<?php TemplateUtility::printHeader('Reports'); ?>
+<?php TemplateUtility::printHeader('Customized Reports'); ?>
 <?php TemplateUtility::printHeaderBlock(); ?>
 <?php TemplateUtility::printTabs($this->active); ?>
     <div id="main">
