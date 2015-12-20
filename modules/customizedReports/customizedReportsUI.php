@@ -32,7 +32,7 @@ include_once('./lib/DateUtility.php');
 include_once('./lib/Candidates.php');
 include_once('./lib/CommonErrors.php');
 
-class ReportsUI extends UserInterface
+class customizedReportsUI extends UserInterface
 {
     public function __construct()
     {
@@ -44,7 +44,7 @@ class ReportsUI extends UserInterface
         $this->_moduleTabText = 'Reports';
         $this->_subTabs = array(
                 'EEO Reports' => CATSUtility::getIndexName() . '?m=reports&amp;a=customizeEEOReport',
-'Custom Reports' => CATSUtility::getIndexName() . '?m=customizedReport'
+'Custom Reports' => CATSUtility::getIndexName() . '?m=reports&amp;a=customizedReport'
 
             );
     }
