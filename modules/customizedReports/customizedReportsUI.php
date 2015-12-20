@@ -1,7 +1,7 @@
 <?php
 /*
  * CATS
- * Reports Module
+ * customizedReports Module
  *
  * Copyright (C) 2005 - 2007 Cognizo Technologies, Inc.
  *
@@ -24,7 +24,7 @@
  * Cognizo Technologies, Inc. All Rights Reserved.
  *
  *
- * $Id: ReportsUI.php 3810 2007-12-05 19:13:25Z brian $
+ * $Id: customizedReportsUI.php 3810 2007-12-05 19:13:25Z brian $
  */
 
 include_once('./lib/Statistics.php');
@@ -39,9 +39,9 @@ class customizedReportsUI extends UserInterface
         parent::__construct();
 
         $this->_authenticationRequired = true;
-        $this->_moduleDirectory = 'reports';
-        $this->_moduleName = 'reports';
-        $this->_moduleTabText = 'Reports';
+        $this->_moduleDirectory = 'customizedReports';
+        $this->_moduleName = 'customizedReports';
+        //$this->_moduleTabText = 'Customized Reports';
         $this->_subTabs = array(
                 'EEO Reports' => CATSUtility::getIndexName() . '?m=reports&amp;a=customizeEEOReport'
             );
@@ -83,7 +83,7 @@ class customizedReportsUI extends UserInterface
                 $this->generateEEOReportPreview();
                 break;
 
-            case 'reports':
+            case 'customizedReports':
             default:
                 $this->reports();
                 break;
@@ -165,7 +165,7 @@ class customizedReportsUI extends UserInterface
 
         $this->_template->assign('active', $this);
         $this->_template->assign('statisticsData', $statisticsData);
-        $this->_template->display('./modules/reports/Reports.tpl');
+        $this->_template->display('./modules/customizedReports/customizedReports.tpl');
     }
 
     private function graphView()
@@ -182,7 +182,7 @@ class customizedReportsUI extends UserInterface
         if (!eval(Hooks::get('REPORTS_GRAPH'))) return;
 
         $this->_template->assign('active', $this);
-        $this->_template->display('./modules/reports/GraphView.tpl');
+        $this->_template->display('./modules/customizedReports/GraphView.tpl');
     }
 
     private function showSubmissionReport()
@@ -262,7 +262,7 @@ class customizedReportsUI extends UserInterface
 
         $this->_template->assign('reportTitle', $reportTitle);
         $this->_template->assign('submissionJobOrdersRS', $submissionJobOrdersRS);
-        $this->_template->display('./modules/reports/SubmissionReport.tpl');
+        $this->_template->display('./modules/customizedReports/SubmissionReport.tpl');
     }
 
     private function showPlacementReport()
@@ -342,7 +342,7 @@ class customizedReportsUI extends UserInterface
 
         $this->_template->assign('reportTitle', $reportTitle);
         $this->_template->assign('placementsJobOrdersRS', $placementsJobOrdersRS);
-        $this->_template->display('./modules/reports/PlacedReport.tpl');
+        $this->_template->display('./modules/customizedReports/PlacedReport.tpl');
     }
 
     private function customizeJobOrderReport()
@@ -394,7 +394,7 @@ class customizedReportsUI extends UserInterface
         $this->_template->assign('reportParameters', $reportParameters);
         $this->_template->assign('active', $this);
         $this->_template->assign('subActive', '');
-        $this->_template->display('./modules/reports/JobOrderReport.tpl');
+        $this->_template->display('./modules/customizedReports/JobOrderReport.tpl');
     }
 
     private function customizeEEOReport()
@@ -403,7 +403,7 @@ class customizedReportsUI extends UserInterface
         $this->_template->assign('modeStatus', 'all');
         $this->_template->assign('active', $this);
         $this->_template->assign('subActive', '');
-        $this->_template->display('./modules/reports/EEOReport.tpl');
+        $this->_template->display('./modules/customizedReports/EEOReport.tpl');
     }
 
     private function generateJobOrderReportPDF()
@@ -718,7 +718,7 @@ class customizedReportsUI extends UserInterface
         $this->_template->assign('EEOSettingsRS', $EEOSettingsRS);
         $this->_template->assign('active', $this);
         $this->_template->assign('subActive', '');
-        $this->_template->display('./modules/reports/EEOReport.tpl');
+        $this->_template->display('./modules/customizedReports/EEOReport.tpl');
     }
 }
 
