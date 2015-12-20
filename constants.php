@@ -250,7 +250,7 @@ $timeZones = array(
   //array(4.5,  'GMT+04:30 Kabul'),
     array(5,    'GMT+05:00 Ekaterinburg'),
     array(5,    'GMT+05:00 Islamabad, Karachi, Tashkent'),
-  //array(5.5,  'GMT+05:30 Chennai, Kolkata, Mumbai, New Delhi'),
+    array(5.5,  'GMT+05:30 Chennai, Kolkata, Mumbai, New Delhi'),
   //array(5.5,  'GMT+05:30 Sri Jayawardenepura'),
   //array(5.75, 'GMT+05:45 Kathmandu'),
     array(6,    'GMT+06:00 Almaty, Novosibirsk'),
