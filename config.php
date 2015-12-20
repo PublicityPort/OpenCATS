@@ -32,7 +32,7 @@ define('LICENSE_KEY', '');
 
 /* Database configuration. */
 define('DATABASE_USER', 'cats');
-define('DATABASE_PASS', 'password');
+define('DATABASE_PASS', 'pMj9vz52JQz6jqvy');
 define('DATABASE_HOST', 'localhost');
 define('DATABASE_NAME', 'cats');
 
@@ -152,10 +152,10 @@ define('FORGOT_PASSWORD_SUBJECT',   'CATS - Password Retrieval Request');
 define('FORGOT_PASSWORD_BODY',      'You recently requested that your CATS: Applicant Tracking System password be sent to you. Your current password is %s.');
 
 /* Is this a demo site? */
-define('ENABLE_DEMO_MODE', false);
+define('ENABLE_DEMO_MODE', true);
 
 /* Offset to GMT Time. */
-define('OFFSET_GMT', -6);
+define('OFFSET_GMT', 5.5);
 
 /* Should we enforce only one session per user (excluding demo)? */
 define('ENABLE_SINGLE_SESSION', false);
