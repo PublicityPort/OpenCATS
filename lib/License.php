@@ -714,17 +714,17 @@ class LicenseUtility
         // Parsing requires the use of the SOAP libraries
         if (!CATSUtility::isSOAPEnabled())
         {
-            return false;
+            //return false;
         }
 
         if (($status = self::getParsingStatus()) === false)
         {
-            return false;
+            //return false;
         }
 
         if ($status['parseLimit'] != -1 && $status['parseUsed'] >= $status['parseLimit'])
         {
-            return false;
+            //return false;
         }
 
         return true;
@@ -737,7 +737,7 @@ class LicenseUtility
         //if (!eval(Hooks::get('PARSER_ENABLE_CHECK'))) return;
         if (!defined('PARSING_ENABLED') || !PARSING_ENABLED)
         {
-            return false;
+            //return false;
         }
 
         $pu = new ParseUtility();
@@ -745,10 +745,10 @@ class LicenseUtility
 
         if (!$status || !is_array($status) || !count($status))
         {
-            return false;
+            //return false;
         }
 
-        return $status;
+        return true;
     }
 }
 
