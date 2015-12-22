@@ -202,7 +202,7 @@
                         <td class="tdData">
                             <input type="text" tabindex="6" name="phoneHome" id="phoneHome" class="inputbox" style="width: 150px;" value="<?php if (isset($this->preassignedFields['phoneHome'])) $this->_($this->preassignedFields['phoneHome']); ?>" />
                             <?php if ($this->isParsingEnabled): ?>
-                                <?php if ($this->parsingStatus['parseLimit'] >= 0 && $this->parsingStatus['parseUsed'] >= $this->parsingStatus['parseLimit']): ?>
+                                <?php if ($this->parsingStatus['parseUsed'] != $this->parsingStatus['parseLimit']): ?>
                                     &nbsp;
                                 <?php else: ?>
                                     <?php if ($this->isModal): ?>&nbsp;&nbsp;<?php else: ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php endif; ?>
