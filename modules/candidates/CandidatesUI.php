@@ -255,7 +255,26 @@ class CandidatesUI extends UserInterface
         );
         CATSUtility::transferRelativeURI($transferURI);
     }
+/*
+     * Called by external modules mainly for webservices
+     */
+    public function publicAddCandidateforWS($isModal, $moduleDirectory)
+    {
+        if ($this->_accessLevel < ACCESS_LEVEL_EDIT)
+        {
+            CommonErrors::fatal(COMMONERROR_BADINDEX, $this, 'Invalid user level for action.');
+            return;
+        }
 
+        $candidateID = $this->_addCandidate($isModal, $moduleDirectory);
+
+        if ($candidateID <= 0)
+        {
+            CommonErrors::fatalModal(COMMONERROR_RECORDERROR, $this, 'Failed to add candidate.');
+        }
+
+        echo $candidateID;
+    }
     /*
      * Called by external modules for processing the log activity / change
      * status dialog.
