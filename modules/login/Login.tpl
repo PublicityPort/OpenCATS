@@ -146,7 +146,7 @@
                    */
                 ?>
                 <span class="footerCopyright"><?php echo(COPYRIGHT_HTML); ?></span>
-                <div>Powered by <a href="http://www.catsone.com/"><strong>CATS</strong></a>.</div>
+                <!-- <div>Powered by <a href="http://www.catsone.com/"><strong></strong></a>.</div> -->
             </div>
         </div>
         <script type="text/javascript">

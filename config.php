@@ -31,10 +31,10 @@
 define('LICENSE_KEY', '');
 
 /* Database configuration. */
-define('DATABASE_USER', 'cats');
-define('DATABASE_PASS', 'pMj9vz52JQz6jqvy');
+define('DATABASE_USER', 'opencats');
+define('DATABASE_PASS', 'VGVFrhjQwPXRdjJb');
 define('DATABASE_HOST', 'localhost');
-define('DATABASE_NAME', 'cats');
+define('DATABASE_NAME', 'opencats');
 
 /* Resfly.com Resume Import Services Enabled */
 define('PARSING_ENABLED', true);
